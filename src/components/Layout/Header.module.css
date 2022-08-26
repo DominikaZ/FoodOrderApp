@@ -15,7 +15,7 @@
 
   padding: 0 10%;
   box-shadow: 0 2px 9px #00000030;
-  z-index: 1;
+  z-index: 20;
 }
 
 .top-img {
