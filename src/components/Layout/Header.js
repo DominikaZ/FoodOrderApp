@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import mealsHeaderImage from "../../resources/foodOnTable.jpg";
-import HeaderCartButton from "../UI/HeaderCartButton";
+import HeaderCartButton from "./HeaderCartButton";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
