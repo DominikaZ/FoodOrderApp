@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+:root {
+  --main-bg-color: #3f3f3f;
+  --header-color: #8a2b06;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,6 +15,6 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: var(--main-bg-color);
 }
 
