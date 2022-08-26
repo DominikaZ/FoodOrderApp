@@ -27,8 +27,6 @@ const Cart = (props) => {
     </ul>
   );
 
-  console.log(cartItems);
-
   return (
     <Modal onClose={props.onClose}>
       {cartItems}
