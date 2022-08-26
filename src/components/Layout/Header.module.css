@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color:  var(--header-color);
+  background-color:  var(--primary-color);
   color: white;
 
   padding: 0 10%;
