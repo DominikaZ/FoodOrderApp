@@ -9,6 +9,7 @@ const firebaseMealsAddress = firebaseRoot + "meals.json"
 
 const OfferedMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -27,12 +28,19 @@ const OfferedMeals = () => {
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
     // fetch meals from API into meals var
     fetchMeals();
   }, []);
   // runs only when component is first loaded
+
+  if (isLoading) {
+    return <section className={classes.MealsLoading}>
+      <span className={classes.loader}></span>
+    </section>
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
