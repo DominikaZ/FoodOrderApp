@@ -4,17 +4,22 @@ import MealItem from "./MealItem/MealItem";
 
 import { useEffect, useState } from "react";
 
-const firebaseRoot = "https://my-dummy-firebase-link"
-const firebaseMealsAddress = firebaseRoot + "meals.json"
+const firebaseRoot = "https://my-dummy-firebase-link";
+const firebaseMealsAddress = firebaseRoot + "meals.json";
 
 const OfferedMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState(undefined);
 
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(firebaseMealsAddress);
       const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
 
       let loadedMeals = [];
 
@@ -23,7 +28,7 @@ const OfferedMeals = () => {
           id: key,
           name: responseData[key].name,
           description: responseData[key].description,
-          price: responseData[key].price
+          price: responseData[key].price,
         });
       }
 
@@ -31,15 +36,28 @@ const OfferedMeals = () => {
       setIsLoading(false);
     };
 
-    // fetch meals from API into meals var
-    fetchMeals();
+    // runs only when component is first loaded
+    // fetch meals from API into meals var, handle error
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
-  // runs only when component is first loaded
+
+  if (httpError) {
+    return (
+      <section className={`${classes.MealsError} ${classes.center}`}>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
 
   if (isLoading) {
-    return <section className={classes.MealsLoading}>
-      <span className={classes.loader}></span>
-    </section>
+    return (
+      <section className={classes.center}>
+        <span className={classes.loader}></span>
+      </section>
+    );
   }
 
   const mealsList = meals.map((meal) => (

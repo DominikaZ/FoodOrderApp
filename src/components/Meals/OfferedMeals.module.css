@@ -11,10 +11,15 @@
   padding: 0;
 }
 
-
-.MealsLoading {
+.center {
   text-align: center;
-  color: white;
+}
+
+.MealsError p {
+  color: #b95831;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
 
 /* FROM https://cssloaders.github.io/ */
